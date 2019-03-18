@@ -21,12 +21,24 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    override func resignFirstResponder() -> Bool {
-        textField.
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
+    
+    func dissmissKeyboard(){
+        view.endEditing(true)
+    }
+    func hideKeyboardWhenTabArround() {
+        let tap = UITapGestureRecognizer(target: self.view, action: @selector(self.dissmissKeyboard))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTabArround()
         
     }
 
